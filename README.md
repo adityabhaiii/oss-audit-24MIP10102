@@ -1,77 +1,98 @@
-# oss-audit-24MIP10102
-🐍 Open Source Audit Project
-👤 Student Information
-Name: Aditya Singh Registration Number: 24MIP10102 Course: Open Source Software (OSS NGMC)
+oss-audit — The Open Source Audit (Git)
+Course: Open Source Software (OSS NGMC) Student: Vaibhav Gupta Registration Number: 24BCE10961 Chosen Software: Git — Distributed Version Control System License of Chosen Software: GNU General Public License v2 (GPLv2)
 
-💻 Chosen Software: Python
-Python is an open-source, high-level programming language known for its simplicity, readability, and wide range of applications. It is widely used in web development, data science, artificial intelligence, automation, and system scripting.
+About This Project
+This repository contains the shell scripts and documentation for The Open Source Audit, a capstone project for the Open Source Software course. The project audits Git — the version control system created by Linus Torvalds in 2005 — covering its origin story, license analysis, ethical implications, Linux footprint, FOSS ecosystem, and a comparison against its proprietary alternative (Perforce Helix Core).
 
-This project focuses on analyzing Python from both a theoretical and practical perspective, including its origin, licensing, ecosystem, and real-world usage on Linux systems.
+Repository Contents
+File	Description
+scripts/system_identity.sh	Script 1 — System Identity Report
+scripts/foss_inspector.sh	Script 2 — FOSS Package Inspector
+scripts/disk_auditor.sh	Script 3 — Disk and Permission Auditor
+scripts/log_analyzer.sh	Script 4 — Log File Analyzer
+scripts/manifesto_generator.sh	Script 5 — Open Source Manifesto Generator
+README.md	This file
+Script Descriptions
+Script 1 — System Identity Report (system_identity.sh)
+Displays a welcome-screen-style identity card showing the Linux distribution, kernel version, current user, home directory, system uptime, date/time, and the open-source license covering the OS.
 
-📜 Project Overview
-This repository contains five shell scripts developed as part of the Open Source Audit project. These scripts demonstrate practical Linux skills and automation using Bash scripting.
+Concepts: Variables, echo, command substitution $(), output formatting, grep, cut.
 
-Each script is designed to showcase key concepts such as system information retrieval, package inspection, file system analysis, log processing, and user interaction.
+Script 2 — FOSS Package Inspector (foss_inspector.sh)
+Checks whether a specified package (default: git) is installed, shows its version and details, and prints a philosophy note about the package using a case statement.
 
-⚙️ Scripts Description
-🔹 Script 1 — System Identity Report
-This script displays important details about the Linux system, including:
+Concepts: if-then-else, case statement, dpkg/rpm, pipe with grep, command-line arguments.
 
-Kernel version
-Logged-in user
-Home directory
-System uptime
-Current date and time
-Linux distribution
-It provides a quick overview of the system environment.
+Script 3 — Disk and Permission Auditor (disk_auditor.sh)
+Audits important system directories (/etc, /var/log, /home, /usr/bin, /tmp) for permissions, ownership, and disk usage. Also checks Git's configuration directories.
 
-🔹 Script 2 — FOSS Package Inspector
-This script checks whether Python is installed on the system. It:
+Concepts: for loop, arrays, df, du, ls -ld, awk, cut, printf.
 
-Verifies package availability
-Displays version details
-Uses conditional statements to handle installation status
-🔹 Script 3 — Disk and Permission Auditor
-This script analyzes key system directories such as /etc, /home, and /var/log. It:
+Script 4 — Log File Analyzer (log_analyzer.sh)
+Reads a log file line by line, counts keyword occurrences (e.g., "error"), and prints a summary with the last 5 matching lines.
 
-Displays directory size
-Shows ownership and permissions
-Helps understand Linux file system structure
-🔹 Script 4 — Log File Analyzer
-This script reads system log files and:
+Concepts: while read loop, if-then, counter variables, $1/$2 arguments, grep, tail.
 
-Counts occurrences of keywords (e.g., "error")
-Displays recent matching entries
-Helps in basic system monitoring and debugging
-🔹 Script 5 — Open Source Manifesto Generator
-This interactive script:
+Script 5 — Open Source Manifesto Generator (manifesto_generator.sh)
+Asks the user three questions interactively and generates a personalised open-source philosophy manifesto saved to a .txt file.
 
-Takes user input
-Generates a personalized open-source philosophy statement
-Saves the output into a text file
-▶️ How to Run the Scripts
-Step 1: Give execution permission
-chmod +x script*.sh
-Step 2: Run scripts
-./script1.sh
-./script2.sh
-./script3.sh
-./script4.sh /var/log/syslog
-# or
-./script4.sh /var/log/messages
-./script5.sh
-🖥️ System Requirements
-Linux Operating System (Ubuntu recommended)
-Bash Shell
-Basic terminal knowledge
-🧠 Learning Outcomes
-Through this project, I gained:
+Concepts: read, string concatenation, file redirection (>, >>), date, aliases (explained in comments).
 
-Understanding of open-source philosophy and licensing
-Hands-on experience with Linux command-line tools
-Knowledge of Bash scripting concepts
-Insight into how open-source software operates in real systems
-📌 Conclusion
-This project demonstrates both theoretical understanding and practical implementation of open-source concepts using Python and Linux. It highlights the importance of collaboration, transparency, and automation in modern software development.
+How to Run the Scripts
+Prerequisites
+A Linux system (Ubuntu recommended) — either native, a VM, or WSL on Windows.
+bash shell (pre-installed on all Linux distributions).
+git package installed (sudo apt install git).
+Step-by-Step Instructions
+Clone this repository:
 
-⭐ This repository is part of an academic project submission. This project was implemented and tested on Ubuntu 22.04 (WSL environment).
+git clone https://github.com/<your-username>/oss-audit-<rollnumber>.git
+cd oss-audit-<rollnumber>
+Make all scripts executable:
+
+chmod +x scripts/*.sh
+Run Script 1 — System Identity Report:
+
+./scripts/system_identity.sh
+No arguments needed. Displays system information immediately.
+
+Run Script 2 — FOSS Package Inspector:
+
+# Inspect git (default)
+./scripts/foss_inspector.sh
+
+# Inspect a different package
+./scripts/foss_inspector.sh apache2
+./scripts/foss_inspector.sh firefox
+Run Script 3 — Disk and Permission Auditor:
+
+./scripts/disk_auditor.sh
+No arguments needed. May require sudo for full access to some directories:
+
+sudo ./scripts/disk_auditor.sh
+Run Script 4 — Log File Analyzer:
+
+# Analyze syslog for "error" (default keyword)
+./scripts/log_analyzer.sh /var/log/syslog
+
+# Analyze with a custom keyword
+./scripts/log_analyzer.sh /var/log/syslog warning
+
+# Analyze auth log
+sudo ./scripts/log_analyzer.sh /var/log/auth.log "failed"
+Run Script 5 — Open Source Manifesto Generator:
+
+./scripts/manifesto_generator.sh
+Follow the interactive prompts. Your manifesto will be saved as manifesto_<username>_<timestamp>.txt.
+
+Dependencies
+Dependency	Required For	Install Command
+bash	All scripts	Pre-installed on Linux
+git	Script 2 (default package)	sudo apt install git
+coreutils	date, whoami, du, cut	Pre-installed on Linux
+grep	Scripts 2, 4	Pre-installed on Linux
+gawk	Script 3 (awk)	Pre-installed on most Linux distributions
+All dependencies are part of the standard Linux base installation. No additional packages need to be installed.
+
+License
+The scripts in this repository are released for educational purposes as part of the VIT Open Source Software course.
